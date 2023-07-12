@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Current Location</title>
+  <style>
+    #getLocationBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button id="getLocationBtn">Send Location</button>
+  
+  <script>
+    // Function to get the current location
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+    
+    // Callback function to handle the retrieved position
+    function showPosition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      
+      // Construct the Google Maps URL
+      const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+      
+      // Redirect to the second HTML file with the location as a query parameter
+      window.location.href = `second.html?location=${encodeURIComponent(mapsUrl)}`;
+    }
+    
+    // Add event listener to the button
+    const getLocationBtn = document.getElementById("getLocationBtn");
+    getLocationBtn.addEventListener("click", getLocation);
+  </script>
+</body>
+</html>

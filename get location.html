@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Receive Location</title>
+  <style>
+    h1 {
+      font-size: 24px;
+    }
+    
+    #locationText {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Received Location:</h1>
+  <p id="locationText"></p>
+  
+  <script>
+    // Function to extract the location from the query parameter
+    function getLocationFromQuery() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const location = urlParams.get('location');
+      
+      // Display the location on the page
+      const locationText = document.getElementById("locationText");
+      locationText.textContent = location;
+    }
+    
+    // Call the function when the page loads
+    window.addEventListener("load", getLocationFromQuery);
+  </script>
+</body>
+</html>
